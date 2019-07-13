@@ -1,6 +1,5 @@
 package tasks;
 /*
-Задача №0755
 Маша и Миша собирали землянику. Маше удалось сорвать X ягод, а Мише – Y ягод.
  Поскольку ягода была очень вкусной, то ребята могли какую то часть ягод съесть.
  По нашим подсчетам вместе они съели Z ягод.
@@ -32,7 +31,7 @@ public class Sbor_zemlyaniki {
         while ((line = reader.readLine()) != null) {
             int[] array_of_XYZ = stringToIntArray(line);
             if (collectedBerries(array_of_XYZ) >= 0){
-                writer.write(String.valueOf(collectedBerries(array_of_XYZ)));
+                writer.write(collectedBerries(array_of_XYZ));
                 writer.newLine();
             } else {
                 writer.write("Impossible");
@@ -59,4 +58,6 @@ public class Sbor_zemlyaniki {
     private static int collectedBerries(int[] array){
         return array[0] + array[1] - array[2];
     }
+
+
 }
