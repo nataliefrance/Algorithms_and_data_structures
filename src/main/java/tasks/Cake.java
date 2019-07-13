@@ -23,15 +23,15 @@ public class Cake {
         PrintWriter out = new PrintWriter(System.out);
 
         int guestNumber = in.nextInt();
-        int cut = 0;
-        if (guestNumber == 1) {
-            cut = 0;
-        } else if (guestNumber % 2 == 0) {
-            cut = guestNumber / 2;
-        } else if (guestNumber % 2 != 0) {
-            cut = guestNumber;
-        }
+        int cut;
 
+        if (guestNumber % 2 == 0) {
+            cut = guestNumber / 2;
+        } else if (guestNumber % 2 != 0){
+            if (guestNumber == 1){
+                cut = 0;
+            } else cut = guestNumber;
+        } else cut = 0;
         out.println(cut);
         out.flush();
     }
