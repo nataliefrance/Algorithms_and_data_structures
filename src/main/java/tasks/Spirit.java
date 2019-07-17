@@ -22,16 +22,16 @@ public class Spirit {
         Scanner in = new Scanner(System.in);
         PrintWriter out = new PrintWriter(System.out);
 
-        int c = in.nextInt();
-        int h = in.nextInt();
-        int o = in.nextInt();
+        long c = in.nextInt();
+        long h = in.nextInt();
+        long o = in.nextInt();
 
-        int[] spirit = new int[3];
+        long[] spirit = new long[3];
         spirit[0] = c / 2;
         spirit[1] = h / 6;
         spirit[2] = o;
 
-        int min = spirit[0];
+        long min = spirit[0];
 
         for (int i = 1; i < spirit.length; i++) {
             if (min > spirit[i]){

@@ -18,7 +18,7 @@ package tasks;
  */
 import java.io.*;
 
-public class Sbor_zemlyaniki {
+public class Zemlyanika {
     public static void main(String[] args) throws IOException {
 
         File inputFile = new File("src\\main\\resources\\INPUT.TXT");

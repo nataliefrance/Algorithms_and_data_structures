@@ -49,7 +49,7 @@ public class GoldSand {
         out.flush();
     }
 
-    public static void bubbleSorter(int[] array) {     //МЕТОД ПУЗЫРЬКОВОЙ СОРТИРОВКИ
+    private static void bubbleSorter(int[] array) {     //МЕТОД ПУЗЫРЬКОВОЙ СОРТИРОВКИ
         for (int i = array.length - 1; i >= 1; i--) {
             for (int j = 0; j < i; j++) {
                 if (array[j] > array[j + 1]) {
