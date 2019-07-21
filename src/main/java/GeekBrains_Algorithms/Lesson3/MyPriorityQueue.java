@@ -1,9 +1,21 @@
 package GeekBrains_Algorithms.Lesson3;
 
+import java.util.Comparator;
+
 public class MyPriorityQueue<T extends Comparable> {
     private T[] list;
     private int size;
     private final int DEFAULT_CAPACITY = 100;
+    private Comparator comparator = Comparator.naturalOrder();
+
+    public MyPriorityQueue(int capacity, Comparator comparator) {
+        if (capacity <= 0) {
+            throw new IllegalArgumentException("capacity " + capacity);
+        } else {
+            list = (T[]) new Comparable[capacity];
+            this.comparator = comparator;
+        }
+    }
 
     public MyPriorityQueue(int capacity) {
         if (capacity <= 0) {
@@ -27,7 +39,8 @@ public class MyPriorityQueue<T extends Comparable> {
         list[size] = item;
         int i = size - 1;
         size++;
-        if (i > 0 && list[i].compareTo(list[i - 1]) < 0){
+        //while (i > 0 && list[i].compareTo(list[i - 1]) < 0){
+        while (i > 0 && comparator.compare(list[i], list[i - 1]) < 0) {
             swap(i, i - 1);
         }
     }
