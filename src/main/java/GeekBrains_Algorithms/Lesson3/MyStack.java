@@ -47,6 +47,9 @@ public class MyStack<T> {
         size++;
     }
 
+    /**
+     * @return удаляет и возращает верхний элемент из стека
+     */
     public T pop() {
         T temp = peek();
         size--;
@@ -58,5 +61,14 @@ public class MyStack<T> {
         T[] tempArray = (T[]) new Object[newCapacity];
         System.arraycopy(list, 0, tempArray, 0, size);
         list = tempArray;
+    }
+
+    @Override
+    public String toString() {
+        String s = "";
+        for (int i = 0; i < list.length; i++) {
+            s += list[i] + "";
+        }
+        return s;
     }
 }
