@@ -27,7 +27,7 @@ public class MyDeque<T> {
 
     public void insertLeft(T item){
         if (isFull()) {
-            reCapacity(list.length * 2);
+            throw new StackOverflowError("Дек переполнен.");
         }
         size++;
         begin = prevIndex(begin);
@@ -36,7 +36,7 @@ public class MyDeque<T> {
 
     public void insertRight(T item){
         if (isFull()) {
-            reCapacity(list.length * 2);
+            throw new StackOverflowError("Дек переполнен.");
         }
         size++;
         list[end] = item;
