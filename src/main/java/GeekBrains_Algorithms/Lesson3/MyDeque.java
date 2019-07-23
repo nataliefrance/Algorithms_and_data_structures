@@ -54,8 +54,8 @@ public class MyDeque<T> {
     public T removeRight(){
         T temp = peekRight();
         size--;
-        list[end - 1] = null;
         end = prevIndex(end);
+        list[end] = null;
         return temp;
     }
 
