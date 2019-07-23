@@ -43,7 +43,6 @@ public class Main {
 
         ClassForReverseString classForReverseString = new ClassForReverseString("Hello world!");
         System.out.println(classForReverseString.stringToReverse);
-        classForReverseString.reverseString();
-        System.out.println(classForReverseString.stringToReverse);
+        System.out.println(classForReverseString.reverseString());
     }
 }
