@@ -32,6 +32,11 @@ public class MyDoubleLinkedList<T> implements Iterable<T>{
             current = current.getNext();
             return (T) current.getValue();
         }
+
+        @Override
+        public void remove() {
+            MyDoubleLinkedList.this.remove((T) current.getValue());
+        }
     }
 
     private class Node<T> {
