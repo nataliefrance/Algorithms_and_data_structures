@@ -1,6 +1,8 @@
 package GeekBrains_Algorithms.Lesson4;
 
-public class MyDoubleLinkedList<T> {
+import java.util.Iterator;
+
+public class MyDoubleLinkedList<T> implements Iterable<T>{
 
     private Node first;
     private Node last;
@@ -12,13 +14,38 @@ public class MyDoubleLinkedList<T> {
         this.size = 0;
     }
 
-    class Node<T> {
+    @Override
+    public Iterator<T> iterator() {
+        return new Iter();
+    }
+
+    private class Iter implements Iterator<T>{
+        Node current = new Node(null, first);
+
+        @Override
+        public boolean hasNext() {
+            return current.getNext() != null;
+        }
+
+        @Override
+        public T next() {
+            current = current.getNext();
+            return (T) current.getValue();
+        }
+    }
+
+    private class Node<T> {
         private T value;
         private Node next;
         private Node previous;
 
         public Node(T value) {
             this.value = value;
+        }
+
+        public Node(T value, Node next) {
+            this.value = value;
+            this.next = next;
         }
 
         public T getValue() {
@@ -54,6 +81,7 @@ public class MyDoubleLinkedList<T> {
             return value.toString();
         }
     }
+
 
     public boolean isEmpty() {
         return first == null;

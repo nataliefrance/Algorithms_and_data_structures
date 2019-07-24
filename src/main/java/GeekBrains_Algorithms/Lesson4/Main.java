@@ -1,5 +1,7 @@
 package GeekBrains_Algorithms.Lesson4;
 
+import java.util.Iterator;
+
 public class Main {
     public static void main(String[] args) {
 //        MyLinkedList<String> myLinkedList = new MyLinkedList<>();
@@ -25,6 +27,17 @@ public class Main {
         myDLL.remove("two");
         myDLL.removeLast();
         System.out.println(myDLL);
+
+        Iterator<String> iterator = myDLL.iterator();
+        while (iterator.hasNext()) {
+            System.out.print(iterator.next() + ", ");
+        }
+        System.out.println("");
+        System.out.println("foreach:");
+
+        for (String s : myDLL) {
+            System.out.print(s + ", ");
+        }
 
     }
 }
