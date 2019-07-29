@@ -2,7 +2,8 @@ package GeekBrains_Algorithms.Lesson5;
 
 public class Main {
     public static void main(String[] args) {
-        System.out.println(factorial(5));
+        //System.out.println(factorial(5));
+        System.out.println(exponentiation(2, 3));
     }
 
     public static int factorial(int n){
@@ -58,5 +59,15 @@ public class Main {
             return a;
         }
         return recMultiply(a, b - 1) + a;
+    }
+
+    static int exponentiation(int number, int exponent){
+        if (exponent == 0){
+            return 1;
+        }
+        if (exponent == 1){
+            return number;
+        }
+        return exponentiation(number, exponent - 1) * number;
     }
 }
