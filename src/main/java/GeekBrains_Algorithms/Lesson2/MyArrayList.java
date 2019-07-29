@@ -1,7 +1,5 @@
 package GeekBrains_Algorithms.Lesson2;
 
-import java.util.Arrays;
-
 public class MyArrayList<T extends Comparable> {
     private T[] array;
     private int size;
@@ -68,41 +66,41 @@ public class MyArrayList<T extends Comparable> {
         return false;
     }
 
-    boolean find(T item){
+    boolean find(T item) {
         for (int i = 0; i < size; i++) {
             if (item.equals(array[i])) {
-               return true;
+                return true;
             }
         }
         return false;
     }
 
-   private void swap (int index1, int index2){
+    private void swap(int index1, int index2) {
         T temp = array[index1];
         array[index1] = array[index2];
         array[index2] = temp;
 
-   }
+    }
 
-   void selectionSort(){
-       int minIndex;
-       for (int i = 0; i < size - 1; i++) {
-           minIndex = i;
-           for (int j = i + 1; j < size; j++) {
-               if (array[j].compareTo(array[minIndex]) < 0){
-                  minIndex = j;
-               }
-           }
-           swap(i, minIndex);
-       }
-   }
+    void selectionSort() {
+        int minIndex;
+        for (int i = 0; i < size - 1; i++) {
+            minIndex = i;
+            for (int j = i + 1; j < size; j++) {
+                if (array[j].compareTo(array[minIndex]) < 0) {
+                    minIndex = j;
+                }
+            }
+            swap(i, minIndex);
+        }
+    }
 
-    void insertionSort(){
+    void insertionSort() {
         T key;
-        for (int i = 1; i < size ; i++) {
+        for (int i = 1; i < size; i++) {
             int j = i;
             key = array[i];
-            while (j > 0 && key.compareTo(array[j - 1]) < 0){
+            while (j > 0 && key.compareTo(array[j - 1]) < 0) {
                 array[j] = array[j - 1];
                 j--;
             }
@@ -122,6 +120,38 @@ public class MyArrayList<T extends Comparable> {
 
     public T get(int index) {
         return array[index];
+    }
+
+    void qSort(int low, int high) {
+        if (low >= high) {
+            return;
+        }
+        int middle = low + (high - low) / 2;
+        T pivot = array[middle];
+        int i = low;
+        int j = high;
+        while (i <= j) {
+            while (array[i].compareTo(pivot) < 0) {
+                i++;
+            }
+            while (pivot.compareTo(array[j]) < 0) {
+                j--;
+            }
+            if (i <= j){
+                swap(i, j);
+                i++;
+                j--;
+            }
+        }
+        if (low < j){
+            qSort(low, j);
+        }
+        if (high > i){
+            qSort(i, high);
+        }
+    }
+    void quickSort(){
+        qSort(0, getSize() - 1);
     }
 }
 
