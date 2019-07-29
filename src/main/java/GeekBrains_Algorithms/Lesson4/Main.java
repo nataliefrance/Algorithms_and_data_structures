@@ -1,6 +1,7 @@
 package GeekBrains_Algorithms.Lesson4;
 
 import java.util.Iterator;
+import java.util.ListIterator;
 
 public class Main {
     public static void main(String[] args) {
@@ -24,7 +25,6 @@ public class Main {
         myDLL.insertLast("GO!!!");
         myDLL.insert(99, "99");
         System.out.println(myDLL);
-        myDLL.remove("two");
         myDLL.removeLast();
         System.out.println(myDLL);
 
@@ -37,7 +37,9 @@ public class Main {
 
         for (String s : myDLL) {
             System.out.print(s + ", ");
+            if (iterator.next().equals("one")){
+                iterator.remove();
+            }
         }
-
     }
 }

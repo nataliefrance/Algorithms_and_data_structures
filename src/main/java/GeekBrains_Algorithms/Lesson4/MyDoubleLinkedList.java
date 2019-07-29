@@ -1,6 +1,7 @@
 package GeekBrains_Algorithms.Lesson4;
 
 import java.util.Iterator;
+import java.util.ListIterator;
 
 public class MyDoubleLinkedList<T> implements Iterable<T>{
 
@@ -20,7 +21,7 @@ public class MyDoubleLinkedList<T> implements Iterable<T>{
     }
 
     private class Iter implements Iterator<T>{
-        Node current = new Node(null, first);
+        Node current = new Node(null, first, null);
 
         @Override
         public boolean hasNext() {
@@ -35,7 +36,14 @@ public class MyDoubleLinkedList<T> implements Iterable<T>{
 
         @Override
         public void remove() {
-            MyDoubleLinkedList.this.remove((T) current.getValue());
+            if (current == first) {
+                removeFirst();
+            } else if (current == last) {
+                removeLast();
+            } else {
+                current.getPrevious().setNext(current.getNext());
+                current.getNext().setPrevious(current.getPrevious());
+            }
         }
     }
 
@@ -48,9 +56,10 @@ public class MyDoubleLinkedList<T> implements Iterable<T>{
             this.value = value;
         }
 
-        public Node(T value, Node next) {
+        public Node(T value, Node next, Node previous) {
             this.value = value;
             this.next = next;
+            this.previous = previous;
         }
 
         public T getValue() {
@@ -217,7 +226,7 @@ public class MyDoubleLinkedList<T> implements Iterable<T>{
             current = current.getNext();
         }
 
-        if (current.getNext() == null) {
+        if (current == null) {
             return false;
         }
 
