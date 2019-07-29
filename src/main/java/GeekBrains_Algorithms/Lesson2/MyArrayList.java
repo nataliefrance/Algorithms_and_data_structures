@@ -119,5 +119,9 @@ public class MyArrayList<T extends Comparable> {
             }
         }
     }
+
+    public T get(int index) {
+        return array[index];
+    }
 }
 
