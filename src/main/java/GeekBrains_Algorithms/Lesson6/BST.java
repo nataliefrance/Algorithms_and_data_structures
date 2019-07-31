@@ -6,6 +6,7 @@ import java.util.NoSuchElementException;
 public class BST<Key extends Comparable<Key>, Value> {
     private Node root;
     private int depth;
+    private String name;
 
     private class Node {
         private Key key;
@@ -24,15 +25,17 @@ public class BST<Key extends Comparable<Key>, Value> {
             this.level = level;
         }
 
-        public int level(){
+        public int level() {
             return level;
         }
     }
 
-//    public BST() {
-//        this.root.depth = 1;
-//        this.depth = 0;
-//    }
+    public BST() {
+    }
+
+    public BST(String name) {
+        this.name = name;
+    }
 
     public int size() {
         return size(root);
@@ -45,13 +48,40 @@ public class BST<Key extends Comparable<Key>, Value> {
         return node.size;
     }
 
-    public int depth(){
+    public int depth() {
         return this.depth;
     }
 
     public boolean isEmpty() {
         return root == null;
     }
+
+    public int CheckTreeHeight(Node root) {
+        if (root == null) return 0; // высота 0.
+
+        int leftNodeHeight = CheckTreeHeight(root.left);
+        if (leftNodeHeight == -1) return -1; // не сбалансированно
+
+        int rightNodeHeight = CheckTreeHeight(root.right);
+        if (rightNodeHeight == -1) return -1; // не сбалансированно
+
+        int heightDifference = leftNodeHeight - rightNodeHeight;
+        if (Math.abs(heightDifference) > 1)
+            return -1; // не сбалансированно
+        else
+            return Math.max(leftNodeHeight, rightNodeHeight) + 1;
+    }
+    public boolean isBalanced(){
+        if (isEmpty()){
+            return true;
+        }
+        return isBalanced(root);
+    }
+
+    private boolean isBalanced(Node root) {
+        return CheckTreeHeight(root) != -1;
+    }
+
 
     private boolean isKeyNotNull(Key key) {
         if (key == null) {
@@ -93,11 +123,11 @@ public class BST<Key extends Comparable<Key>, Value> {
 
     private Node put(Node node, Key key, Value value, Node parent) {
         if (node == null) {
-            if (parent == null){
+            if (parent == null) {
                 depth = 1;
                 return new Node(key, value, null, 1);
             } else {
-                if (depth == parent.level){
+                if (depth == parent.level) {
                     depth++;
                 }
                 return new Node(key, value, parent, parent.level + 1);
