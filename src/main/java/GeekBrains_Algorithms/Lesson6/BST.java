@@ -4,22 +4,35 @@ import java.util.NoSuchElementException;
 
 //Бинарное дерево поиска (binary search tree)
 public class BST<Key extends Comparable<Key>, Value> {
-
     private Node root;
+    private int depth;
 
     private class Node {
         private Key key;
         private Value value;
         private Node left;
         private Node right;
+        private Node parent;
         private int size;
+        private int level;
 
-        public Node(Key key, Value value) {
+        Node(Key key, Value value, Node parent, int level) {
             this.key = key;
             this.value = value;
             this.size = 1;
+            this.parent = parent;
+            this.level = level;
+        }
+
+        public int level(){
+            return level;
         }
     }
+
+//    public BST() {
+//        this.root.depth = 1;
+//        this.depth = 0;
+//    }
 
     public int size() {
         return size(root);
@@ -30,6 +43,10 @@ public class BST<Key extends Comparable<Key>, Value> {
             return 0;
         }
         return node.size;
+    }
+
+    public int depth(){
+        return this.depth;
     }
 
     public boolean isEmpty() {
@@ -54,13 +71,10 @@ public class BST<Key extends Comparable<Key>, Value> {
 
     private Value get(Node node, Key key) {
         isKeyNotNull(key);
-
         if (node == null) {
             return null;
         }
-
         int keyCompare = key.compareTo(node.key);
-
         if (keyCompare == 0) {
             return node.value;
         } else if (keyCompare < 0) {
@@ -71,24 +85,37 @@ public class BST<Key extends Comparable<Key>, Value> {
     public void put(Key key, Value value) {
         isKeyNotNull(key);
         if (value == null) {
-            //delete(key);
+            delete(key);
             return;
         }
-        root = put(root, key, value);
+        root = put(root, key, value, null);
     }
 
-    private Node put(Node node, Key key, Value value) {
+    private Node put(Node node, Key key, Value value, Node parent) {
         if (node == null) {
-            return new Node(key, value);
+            if (parent == null){
+                depth = 1;
+                return new Node(key, value, null, 1);
+            } else {
+                if (depth == parent.level){
+                    depth++;
+                }
+                return new Node(key, value, parent, parent.level + 1);
+            }
         }
         int keyCompare = key.compareTo(node.key);
         if (keyCompare == 0) {
             node.value = value;
         } else if (keyCompare < 0) {
-            node.left = put(node.left, key, value);
-        } else node.right = put(node.right, key, value);
+            node.left = put(node.left, key, value, node);
+        } else node.right = put(node.right, key, value, node);
+
         node.size = size(node.left) + size(node.right) + 1;
         return node;
+    }
+
+    public Key minKey() {
+        return min(root).key;
     }
 
     private Node min(Node node) {
@@ -98,8 +125,8 @@ public class BST<Key extends Comparable<Key>, Value> {
         return min(node.left);
     }
 
-    public Key minKey() {
-        return min(root).key;
+    public Key maxKey() {
+        return max(root).key;
     }
 
     private Node max(Node node) {
@@ -107,22 +134,6 @@ public class BST<Key extends Comparable<Key>, Value> {
             return node;
         }
         return max(node.right);
-    }
-
-    public Key maxKey() {
-        return max(root).key;
-    }
-
-    @Override
-    public String toString() {
-        return "BST {" + toString(root) + "}";
-    }
-
-    public String toString(Node node) {
-        if (node == null) {
-            return "";
-        }
-        return toString(node.left) + " " + node.value.toString() + " " + toString(node.right);
     }
 
     public void deleteMin() {
@@ -169,5 +180,17 @@ public class BST<Key extends Comparable<Key>, Value> {
         }
         node.size = size(node.left) + size(node.right) + 1;
         return node;
+    }
+
+    @Override
+    public String toString() {
+        return "BST {" + toString(root) + "}";
+    }
+
+    private String toString(Node node) {
+        if (node == null) {
+            return "";
+        }
+        return toString(node.left) + " " + node.value.toString() + " " + toString(node.right);
     }
 }
