@@ -30,16 +30,13 @@ public class Main {
 
         Iterator<String> iterator = myDLL.iterator();
         while (iterator.hasNext()) {
-            System.out.print(iterator.next() + ", ");
-        }
-        System.out.println("");
-        System.out.println("foreach:");
-
-        for (String s : myDLL) {
+            String s = iterator.next();
             System.out.print(s + ", ");
-            if (iterator.next().equals("one")){
+            if (s.equals("one")){
                 iterator.remove();
             }
         }
+        System.out.println();
+        System.out.println(myDLL);
     }
 }

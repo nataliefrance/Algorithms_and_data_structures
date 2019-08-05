@@ -1,19 +1,12 @@
 package GeekBrains_Algorithms.Lesson4;
 
 import java.util.Iterator;
-import java.util.ListIterator;
 
 public class MyDoubleLinkedList<T> implements Iterable<T>{
 
     private Node first;
     private Node last;
     private int size;
-
-    public MyDoubleLinkedList() {
-        this.first = null;
-        this.last = null;
-        this.size = 0;
-    }
 
     @Override
     public Iterator<T> iterator() {
@@ -31,7 +24,7 @@ public class MyDoubleLinkedList<T> implements Iterable<T>{
         @Override
         public T next() {
             current = current.getNext();
-            return (T) current.getValue();
+            return current.getValue();
         }
 
         @Override
@@ -47,7 +40,7 @@ public class MyDoubleLinkedList<T> implements Iterable<T>{
         }
     }
 
-    private class Node<T> {
+    private class Node {
         private T value;
         private Node next;
         private Node previous;
@@ -96,7 +89,6 @@ public class MyDoubleLinkedList<T> implements Iterable<T>{
         }
     }
 
-
     public boolean isEmpty() {
         return first == null;
     }
@@ -106,15 +98,15 @@ public class MyDoubleLinkedList<T> implements Iterable<T>{
     }
 
     public T getFirst() {
-        return (T) first.getValue();
+        return first.getValue();
     }
 
     public T getLast() {
-        return (T) last.getValue();
+        return last.getValue();
     }
 
     public void insertFirst(T item) {
-        Node newNode = new Node<T>(item);
+        Node newNode = new Node(item);
         newNode.setNext(first);
         if (!isEmpty()) {
             first.setPrevious(newNode);

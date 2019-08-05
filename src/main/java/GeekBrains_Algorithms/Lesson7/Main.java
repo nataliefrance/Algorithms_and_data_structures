@@ -14,5 +14,11 @@ public class Main {
         DepthFirstPaths dfp = new DepthFirstPaths(graph, 2);
         System.out.println(dfp.hasPathTo(3));
         System.out.println(dfp.pathTo(3));
+
+        BreadthFirstPaths bfp = new BreadthFirstPaths(graph, 2);
+        System.out.println(bfp.hasPathTo(3));
+        System.out.println(bfp.distanceTo(4));
+
+
     }
 }

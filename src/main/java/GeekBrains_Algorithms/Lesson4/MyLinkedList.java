@@ -5,12 +5,7 @@ public class MyLinkedList<T> {
     private Node first;
     private int size;
 
-    public MyLinkedList() {
-        this.first = null;
-        this.size = 0;
-    }
-
-    class Node<T> {
+    class Node {
         private T value;
         private Node next;
 
@@ -54,11 +49,11 @@ public class MyLinkedList<T> {
     }
 
     public T getFirst() {
-        return (T) first.getValue();
+        return first.getValue();
     }
 
     public void insertFirst(T item) {
-        Node newNode = new Node<T>(item);
+        Node newNode = new Node(item);
         newNode.setNext(first);
         first = newNode;
         size++;
@@ -71,7 +66,7 @@ public class MyLinkedList<T> {
         Node oldFirst = first;
         first = first.getNext();
         size--;
-        return (T) oldFirst.getValue();
+        return oldFirst.getValue();
     }
 
     public int indexOf(T item) {

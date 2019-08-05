@@ -28,15 +28,15 @@ public class DepthFirstPaths {
         return marked[vertex];
     }
 
-    public LinkedList<Integer> pathTo(int vertex){
-        if (!hasPathTo(vertex)){ //если дороги до вершины нет, возвращаем null
+    public LinkedList<Integer> pathTo(int v){
+        if (!hasPathTo(v)){ //если дороги до вершины нет, возвращаем null
             return null;
         }
         LinkedList<Integer> stack = new LinkedList<>();
-        int vertex1 = vertex;
-        while (vertex1 != source){
-            stack.push(vertex1);
-            vertex1 = edgeTo[vertex];
+        int vertex = v;
+        while (vertex != source){
+            stack.push(vertex);
+            vertex = edgeTo[vertex];
         }
         return stack;
     }

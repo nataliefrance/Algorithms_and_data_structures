@@ -4,7 +4,7 @@ import java.util.LinkedList;
 
 public class Graph {
     private int vertexCount; //количество вершин
-    private int edgeCount = 0; //количество рёбер
+    private int edgeCount; //количество рёбер
     private LinkedList<Integer>[] adjacentList; //список смежности
 
     public Graph(int vertexCount) {
