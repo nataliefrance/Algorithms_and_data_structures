@@ -1,9 +1,11 @@
 package GeekBrains_Algorithms.Lesson8;
 
+import java.util.Iterator;
 import java.util.LinkedList;
+import java.util.ListIterator;
 
 public class ChainingHashMap<Key, Value> {
-    private int capacity = 97; //величина массива
+    private int capacity = 10; //величина массива
     private int size; //сколько элементов уже добавлено в коллекцию
     private LinkedList<Node>[] st;
 
@@ -38,7 +40,7 @@ public class ChainingHashMap<Key, Value> {
 
     private boolean isKeyNotNull(Key key) {
         if (key == null) {
-            throw new IllegalArgumentException("Key не может быть null");
+            throw new IllegalArgumentException("Key cannot be null");
         } else return true;
     }
 
@@ -67,6 +69,17 @@ public class ChainingHashMap<Key, Value> {
         return null;
     }
 
+    public void remove(Key key){
+        isKeyNotNull(key);
+        int i = hash(key);
+        ListIterator<Node> iterator = st[i].listIterator();
+        while (iterator.hasNext()){
+            if(key.equals(iterator.next().key)){
+                iterator.remove();
+            }
+        }
+    }
+
     @Override
     public String toString() {
         String s = "[ ";
@@ -76,6 +89,7 @@ public class ChainingHashMap<Key, Value> {
             }
             s+="\n";
         }
+        s+= "]";
         return s;
     }
 }

@@ -9,7 +9,9 @@ public class Main {
         chm.put(4, "four");
         chm.put(5, "five");
 
-        //System.out.println(chm);
+        System.out.println(chm);
+        chm.remove(3);
+        System.out.println(chm);
         System.out.println(chm.get(3));
 
     }
